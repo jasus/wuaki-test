@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="app" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>Wuaki - Starter app</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="./assets/app.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/movies_genres.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  </head>
+  <body>
+
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <span class="logo"></span>
+        <h2>
+          <span>Wuaki - Starter app</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+    <div ng-view></div>
+
+    <!-- COMPONENTS -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+
+    <!-- CONTROLLERS -->
+    <script src="app.js"></script>
+    <script src="config/routes.js"></script>
+    <script src="src/controllers/movies_genres.js"></script>
+
+    <!-- SERVICES -->
+    <script src="src/services/movies_service.js"></script>
+    <script src="src/services/genres_service.js"></script>
+
+  </body>
+</html>

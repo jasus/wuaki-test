@@ -1,0 +1,201 @@
+<md-content>
+  <!-- GENRES -->
+  <div layout="row" class="section">
+    <div flex="flex"></div>
+    <div flex="50" class="content-left">
+      <h1>Genres</h1>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <td>
+              <a href="" ng-click="sortTypeGenre = 'name'; sortReverseGenre = !sortReverseGenre">
+                Name
+                <span ng-show="sortTypeGenre == 'name' && !sortReverseGenre" class="fa fa-caret-down"></span>
+                <span ng-show="sortTypeGenre == 'name' && sortReverseGenre" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a href="" ng-click="sortTypeGenre = 'numMovies'; sortReverseGenre = !sortReverseGenre">
+                Num movies
+                <span ng-show="sortTypeGenre == 'numMovies' && !sortReverseGenre" class="fa fa-caret-down"></span>
+                <span ng-show="sortTypeGenre == 'numMovies' && sortReverseGenre" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+            </td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="genre in genres | orderBy:sortTypeGenre:sortReverseGenre | filter: { name: searchGenre }">
+            <td>{{ genre.name }}</td>
+            <td>{{ genre.numMovies }}</td>
+            <td class="no-padding">
+              <md-button class="md-icon-button md-hue-1" ng-click="deleteGenre(genre)" aria-label="Delete">
+                <md-icon md-font-icon="fa fa-trash"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+    <div flex="25" class="content-form content-right">
+      <h3>Genres filter</h3>
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search genres" ng-model="searchGenre">
+            <div class="input-group-addon" ng-click="searchGenre=''"><i class="fa fa-refresh"></i></div>
+          </div>
+        </div>
+      </form>
+      <h3>Actions</h3>
+      <md-button class="md-raised md-primary no-margin button-lowercase" ng-click="showGenreDialog($event)">Add Genre</md-button>
+    </div>
+    <div flex="flex"></div>
+  </div>
+
+  <!-- GENRE DIALOG -->
+  <div style="visibility: hidden">
+    <div class="md-dialog-container" id="genreDialog">
+      <md-dialog aria-label="Create genre" class="dialog-content">
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>Create genre</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+              <md-icon md-font-icon="fa fa-times" aria-label="Close dialog"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        <ng-form name="genreForm">
+
+          <md-dialog-content ng-cloak>
+            <div class="md-dialog-content">
+
+              <md-input-container class="md-block">
+                <label>Name</label>
+                <input ng-model="genre.name" ng-required="true">
+              </md-input-container>
+
+            </div>
+          </md-dialog-content>
+          <md-dialog-actions>
+            <md-button type="submit" ng-disabled="genreForm.$invalid"  class="md-primary" aria-label="Create" ng-click="createGenre(genre)">Create</md-button>
+          </md-dialog-actions>
+        </ng-form>
+      </md-dialog>
+    </div>
+  </div>
+
+  <!-- MOVIE DIALOG -->
+  <div style="visibility: hidden">
+    <div class="md-dialog-container" id="movieDialog">
+    <md-dialog aria-label="Create movie" class="dialog-content">
+
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Create movie</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="closeDialog()">
+            <md-icon md-font-icon="fa fa-times" aria-label="Close dialog"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <ng-form name="movieForm">
+        <md-dialog-content ng-cloak>
+          <div class="md-dialog-content">
+
+              <md-input-container class="md-block">
+                <label>Title</label>
+                <input ng-model="movie.title" ng-required="true">
+              </md-input-container>
+              <md-autocomplete flex ng-required="true"
+                  md-no-cache="noCache"
+                  md-selected-item="movie.genre"
+                  md-search-text="searchGenreDialog"
+                  md-items="genre in genres | filter: searchGenreDialog"
+                  md-item-text="genre.name"
+                  md-min-length="0"
+                  placeholder="Genre name">
+                <md-item-template>
+                  <span md-highlight-text="searchGenreDialog" md-highlight-flags="^i">{{genre.name}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No genres matching "{{searchGenreDialog}}" were found.
+                </md-not-found>
+              </md-autocomplete>
+
+          </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+          <md-button type="submit" ng-disabled="movieForm.$invalid || !movie.genre" class="md-primary" aria-label="Create" ng-click="createMovie(movie)">Create</md-button>
+        </md-dialog-actions>
+      </ng-form>
+
+    </md-dialog>
+    </div>
+  </div>
+
+  <!-- MOVIES -->
+  <div layout="row" class="section">
+    <div flex="flex"></div>
+    <div flex="50" class="content-left">
+      <h1>Movies</h1>
+      <table class="table table-bordered table-striped">
+
+        <thead>
+          <tr>
+            <td>
+              <a href="" ng-click="sortTypeMovie = 'title'; sortReverseMovie = !sortReverseMovie">
+                Title
+                <span ng-show="sortTypeMovie == 'title' && !sortReverseMovie" class="fa fa-caret-down"></span>
+                <span ng-show="sortTypeMovie == 'title' && sortReverseMovie" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a href="" ng-click="sortTypeMovie = 'genre'; sortReverseMovie = !sortReverseMovie">
+                Genre
+                <span ng-show="sortTypeMovie == 'genre' && !sortReverseMovie" class="fa fa-caret-down"></span>
+                <span ng-show="sortTypeMovie == 'genre' && sortReverseMovie" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+            </td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="movie in movies | orderBy:sortTypeMovie:sortReverseMovie | filter: { title: searchMovie }">
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.genre }}</td>
+            <td class="no-padding">
+              <md-button class="md-icon-button md-hue-1" ng-click="deleteMovie(movie)" aria-label="Delete">
+                <md-icon md-font-icon="fa fa-trash"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+    <div flex="25" class="content-form content-right">
+      <h3>Movies filter</h3>
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search movies" ng-model="searchMovie">
+            <div class="input-group-addon" ng-click="searchMovie=''" ><i class="fa fa-refresh"></i></div>
+          </div>
+        </div>
+      </form>
+      <h3>Actions</h3>
+      <md-button class="md-raised md-primary no-margin button-lowercase" ng-click="showMovieDialog($event)">Add Movie</md-button>
+    </div>
+    <div flex="flex"></div>
+  </div>
+
+
+
+</md-content>

@@ -1,0 +1,52 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.logo{
+  width: 48px;
+  height: 48px;
+  background-size: cover;
+  background-image: url("./img/wuaki_logo.png");
+}
+
+.no-margin{
+  margin: 0px !important;
+}
+.no-padding{
+  padding: 0px !important;
+}
+
+.button-lowercase{
+  text-transform: capitalize !important;
+}
+
+.section{
+  min-height: 300px;
+  background-color: white !important;
+}
+
+.dialog-content{
+  min-width: 400px;
+}
