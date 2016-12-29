@@ -16,6 +16,6 @@ table{
   margin-bottom: 10px;
 }
 
-.fa-trash{
-  color: #e60606;
+.ic-delete > svg{
+  fill: #e45959;
 }

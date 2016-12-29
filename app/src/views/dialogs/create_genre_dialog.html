@@ -1,0 +1,29 @@
+<!-- GENRE DIALOG -->
+
+<md-dialog aria-label="Create genre" class="dialog-content">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Create genre</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="closeDialog()">
+        <md-icon md-svg-src="assets/img/ic_close_white_24px.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <ng-form name="genreForm">
+
+    <md-dialog-content ng-cloak>
+      <div class="md-dialog-content">
+
+        <md-input-container class="md-block">
+          <label>Name</label>
+          <input ng-model="genre.name" ng-required="true">
+        </md-input-container>
+
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button type="submit" ng-disabled="genreForm.$invalid"  class="md-primary" aria-label="Create" ng-click="createGenre(genre)">Create</md-button>
+    </md-dialog-actions>
+  </ng-form>
+</md-dialog>
