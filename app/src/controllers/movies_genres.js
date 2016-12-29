@@ -2,7 +2,12 @@
 
 app.controller('MoviesGenresCtrl', function($scope, $mdDialog, $filter, GenresService, MoviesService) {
 
-  var init = function(){
+  /*
+   *  INIT CONTROLLER
+   */
+  init();
+
+  function init(){
     // Default values forms Genre
     $scope.sortTypeGenre     = 'name';
     $scope.sortReverseGenre  = false;
@@ -172,10 +177,5 @@ app.controller('MoviesGenresCtrl', function($scope, $mdDialog, $filter, GenresSe
       genre.numMovies--;
     }
   }
-
-  /*
-   *  INIT CONTROLLER
-   */
-  init();
 
 });
