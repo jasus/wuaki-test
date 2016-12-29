@@ -32,7 +32,7 @@
             <td>{{ genre.name }}</td>
             <td>{{ genre.numMovies }}</td>
             <td class="no-padding">
-              <md-button class="md-icon-button md-hue-1" ng-click="deleteGenre(genre)" aria-label="Delete">
+              <md-button class="md-icon-button md-hue-1" ng-click="showConfirmDeleteGenre($event, genre)" aria-label="Delete">
                 <md-icon class="ic-delete" md-svg-src="assets/img/ic_delete_black_24px.svg"></md-icon>
               </md-button>
             </td>
@@ -90,7 +90,7 @@
             <td>{{ movie.title }}</td>
             <td>{{ movie.genre }}</td>
             <td class="no-padding">
-              <md-button class="md-icon-button md-hue-1" ng-click="deleteMovie(movie)" aria-label="Delete">
+              <md-button class="md-icon-button md-hue-1" ng-click="showConfirmDeleteMovie($event, movie)" aria-label="Delete">
                 <md-icon class="ic-delete" md-svg-src="assets/img/ic_delete_black_24px.svg"></md-icon>
               </md-button>
             </td>

@@ -18,7 +18,7 @@
 
           <md-input-container class="md-block">
             <label>Title</label>
-            <input ng-model="movie.title" ng-required="true">
+            <input ng-model="movie.title" ng-required="true" md-autofocus>
           </md-input-container>
 
           <md-autocomplete flex ng-required="true"
@@ -42,7 +42,7 @@
     <md-dialog-actions>
       <md-button type="submit" ng-disabled="movieForm.$invalid || !movie.genre" class="md-primary" aria-label="Create" ng-click="createMovie(movie)">Create</md-button>
     </md-dialog-actions>
-    
+
   </ng-form>
 
 </md-dialog>
