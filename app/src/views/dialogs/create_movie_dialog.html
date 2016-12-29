@@ -1,0 +1,48 @@
+<!-- MOVIE DIALOG -->
+
+<md-dialog aria-label="Create movie" class="dialog-content">
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Create movie</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="closeDialog()">
+        <md-icon md-svg-src="assets/img/ic_close_white_24px.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <ng-form name="movieForm">
+    <md-dialog-content ng-cloak>
+      <div class="md-dialog-content">
+
+          <md-input-container class="md-block">
+            <label>Title</label>
+            <input ng-model="movie.title" ng-required="true" md-autofocus>
+          </md-input-container>
+
+          <md-autocomplete flex ng-required="true"
+              md-no-cache="noCache"
+              md-selected-item="movie.genre"
+              md-search-text="searchGenreDialog"
+              md-items="genre in genres | filter: searchGenreDialog"
+              md-item-text="genre.name"
+              md-min-length="0"
+              placeholder="Genre name">
+            <md-item-template>
+              <span md-highlight-text="searchGenreDialog" md-highlight-flags="^i">{{genre.name}}</span>
+            </md-item-template>
+            <md-not-found>
+              No genres matching "{{searchGenreDialog}}" were found.
+            </md-not-found>
+          </md-autocomplete>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <md-button type="submit" ng-disabled="movieForm.$invalid || !movie.genre" class="md-primary" aria-label="Create" ng-click="createMovie(movie)">Create</md-button>
+    </md-dialog-actions>
+
+  </ng-form>
+
+</md-dialog>
