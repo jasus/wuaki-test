@@ -4,7 +4,6 @@ app.controller('MoviesGenresCtrl', function($scope, $mdDialog, $filter, GenresSe
 
 
   var init = function(){
-
     // Default sortType Genre
     $scope.sortTypeGenre     = 'name';
     // Default sortOrder Genre
@@ -28,30 +27,36 @@ app.controller('MoviesGenresCtrl', function($scope, $mdDialog, $filter, GenresSe
   // Genre dialog
   $scope.showGenreDialog = function(ev) {
     $mdDialog.show({
-      controller: this,
-      contentElement: '#genreDialog',
+      scope: $scope,
+      templateUrl: 'src/views/dialogs/create_genre_dialog.html',
       parent: angular.element(document.body),
       targetEvent: ev,
-      clickOutsideToClose: true
+      clickOutsideToClose: true,
+      preserveScope: true
     });
   };
 
   // Movie dialog
   $scope.showMovieDialog = function(ev) {
     $mdDialog.show({
-      controller: this,
-      contentElement: '#movieDialog',
+      scope: $scope,
+      templateUrl: 'src/views/dialogs/create_movie_dialog.html',
       parent: angular.element(document.body),
       targetEvent: ev,
-      clickOutsideToClose: true
+      clickOutsideToClose: true,
+      preserveScope: true
     });
   };
 
   $scope.closeDialog = function(){
-    $scope.movieForm.$setUntouched();
-    $scope.movieForm.$setPristine();
-    $scope.genreForm.$setUntouched();
-    $scope.genreForm.$setPristine();
+    if($scope.movieForm){
+      $scope.movieForm.$setUntouched();
+      $scope.movieForm.$setPristine();
+    }
+    if($scope.genreForm){
+      $scope.genreForm.$setUntouched();
+      $scope.genreForm.$setPristine();
+    }
     $mdDialog.cancel();
   }
 
