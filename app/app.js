@@ -14,4 +14,5 @@ var app = angular.module('app', [
   'ngAnimate',
   'ngMaterial',
   'ngRoute',
+  'md.data.table'
 ]);
