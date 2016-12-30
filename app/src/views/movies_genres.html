@@ -1,45 +1,36 @@
 <md-content>
+
   <!-- GENRES -->
   <div layout="row" class="section">
     <div flex="flex"></div>
     <div flex="50" class="content-left">
       <h1>Genres</h1>
-      <table class="table table-bordered table-striped">
-        <!-- HEAD GENRE TABLE-->
-        <thead>
-          <tr>
-            <td>
-              <a href="" ng-click="sortTypeGenre = 'name'; sortReverseGenre = !sortReverseGenre">
-                Name
-                <span ng-show="sortTypeGenre == 'name' && !sortReverseGenre" class="fa fa-caret-down"></span>
-                <span ng-show="sortTypeGenre == 'name' && sortReverseGenre" class="fa fa-caret-up"></span>
-              </a>
-            </td>
-            <td>
-              <a href="" ng-click="sortTypeGenre = 'numMovies'; sortReverseGenre = !sortReverseGenre">
-                Num movies
-                <span ng-show="sortTypeGenre == 'numMovies' && !sortReverseGenre" class="fa fa-caret-down"></span>
-                <span ng-show="sortTypeGenre == 'numMovies' && sortReverseGenre" class="fa fa-caret-up"></span>
-              </a>
-            </td>
-            <td>
-            </td>
-          </tr>
-        </thead>
-        <!-- BODY GENRE TABLE-->
-        <tbody>
-          <tr ng-repeat="genre in genres | orderBy:sortTypeGenre:sortReverseGenre | filter: { name: searchGenre }">
-            <td>{{ genre.name }}</td>
-            <td>{{ genre.numMovies }}</td>
-            <td class="no-padding">
-              <md-button class="md-icon-button md-hue-1" ng-click="showConfirmDeleteGenre($event, genre)" aria-label="Delete">
-                <md-icon class="ic-delete" md-svg-src="assets/img/ic_delete_black_24px.svg"></md-icon>
-              </md-button>
-            </td>
-          </tr>
-        </tbody>
 
-      </table>
+      <md-table-container>
+        <table md-table class="table table-striped">
+          <!-- HEAD GENRE TABLE-->
+          <thead md-head md-order="sortTypeGenre" >
+            <tr md-row>
+              <th md-column md-order-by="name"><span>Name</span></th>
+              <th md-column md-order-by="numMovies"><span>Num movies</span></th>
+              <th md-column ><span></span></th>
+            </tr>
+          </thead>
+          <!-- BODY GENRE TABLE-->
+          <tbody md-body>
+            <tr md-row ng-repeat="genre in genres | orderBy:sortTypeGenre | filter: { name: searchGenre }">
+              <td md-cell>{{genre.name}}</td>
+              <td md-cell>{{genre.numMovies}}</td>
+              <td md-cell class="no-padding">
+                <md-button class="md-icon-button md-hue-1" ng-click="showConfirmDeleteGenre($event, genre)" aria-label="Delete">
+                  <md-icon class="ic-delete" md-svg-src="assets/img/ic_delete_black_24px.svg"></md-icon>
+                </md-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+      
     </div>
     <!-- GENRES FILTER -->
     <div flex="25" class="content-form content-right">
@@ -63,41 +54,32 @@
     <div flex="flex"></div>
     <div flex="50" class="content-left">
       <h1>Movies</h1>
-      <table class="table table-bordered table-striped">
-        <!-- HEAD MOVIE TABLE-->
-        <thead>
-          <tr>
-            <td>
-              <a href="" ng-click="sortTypeMovie = 'title'; sortReverseMovie = !sortReverseMovie">
-                Title
-                <span ng-show="sortTypeMovie == 'title' && !sortReverseMovie" class="fa fa-caret-down"></span>
-                <span ng-show="sortTypeMovie == 'title' && sortReverseMovie" class="fa fa-caret-up"></span>
-              </a>
-            </td>
-            <td>
-              <a href="" ng-click="sortTypeMovie = 'genre'; sortReverseMovie = !sortReverseMovie">
-                Genre
-                <span ng-show="sortTypeMovie == 'genre' && !sortReverseMovie" class="fa fa-caret-down"></span>
-                <span ng-show="sortTypeMovie == 'genre' && sortReverseMovie" class="fa fa-caret-up"></span>
-              </a>
-            </td>
-            <td></td>
-          </tr>
-        </thead>
-        <!-- BODY MOVIE TABLE-->
-        <tbody>
-          <tr ng-repeat="movie in movies | orderBy:sortTypeMovie:sortReverseMovie | filter: { title: searchMovie }">
-            <td>{{ movie.title }}</td>
-            <td>{{ movie.genre }}</td>
-            <td class="no-padding">
-              <md-button class="md-icon-button md-hue-1" ng-click="showConfirmDeleteMovie($event, movie)" aria-label="Delete">
-                <md-icon class="ic-delete" md-svg-src="assets/img/ic_delete_black_24px.svg"></md-icon>
-              </md-button>
-            </td>
-          </tr>
-        </tbody>
 
-      </table>
+      <md-table-container>
+        <table md-table class="table table-striped">
+          <!-- HEAD MOVIE TABLE-->
+          <thead md-head md-order="sortTypeMovie" >
+            <tr md-row>
+              <th md-column md-order-by="title"><span>Title</span></th>
+              <th md-column md-order-by="genre"><span>Genre</span></th>
+              <th md-column ><span></span></th>
+            </tr>
+          </thead>
+          <!-- BODY MOVIE TABLE-->
+          <tbody md-body>
+            <tr md-row ng-repeat="movie in movies | orderBy:sortTypeMovie | filter: { title: searchMovie }">
+              <td md-cell>{{movie.title}}</td>
+              <td md-cell>{{movie.genre}}</td>
+              <td md-cell class="no-padding">
+                <md-button class="md-icon-button md-hue-1" ng-click="showConfirmDeleteMovie($event, movie)" aria-label="Delete">
+                  <md-icon class="ic-delete" md-svg-src="assets/img/ic_delete_black_24px.svg"></md-icon>
+                </md-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+
     </div>
     <!-- MOVIES FILTER-->
     <div flex="25" class="content-form content-right">

@@ -10,12 +10,10 @@ app.controller('MoviesGenresCtrl', function($scope, $mdDialog, $filter, GenresSe
   function init(){
     // Default values forms Genre
     $scope.sortTypeGenre     = 'name';
-    $scope.sortReverseGenre  = false;
     $scope.searchGenre   = '';
 
     // Default values forms Movie
     $scope.sortTypeMovie     = 'title';
-    $scope.sortReverseMovie  = false;
     $scope.searchMovie   = '';
 
     // GET Genres and Movies from Local Storage
