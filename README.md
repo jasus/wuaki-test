@@ -1,5 +1,7 @@
 # `wuaki-test` — Starter app
 
+`wuaki-test` is an AngularJS project that allows to create, list, delete, sort and filter genres and movies. For persistence it is used the LocalStorage, being a small project.
+
 ## Getting Started
 
 To get you started you can simply clone the `wuaki-test` repository and install the dependencies:
